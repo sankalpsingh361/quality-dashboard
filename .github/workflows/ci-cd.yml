@@ -2,26 +2,26 @@ name: Continuous Integration and Delivery
 on:
   push:
     branches: [main]
-    
+
 jobs:
   test_and_build:
-     runs-on: ubuntu-latest
-     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Run npm install, test and build
-      run:
-        nmp ci
-        npm test
-        npm run build
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v2
-      with:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Run npm install, test and build
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
           name: build
           path: build
           retention-days: 1
 
-    deploy_to_production:
+  deploy_to_production:
     if: github.ref == 'refs/heads/main'
     needs: test_and_build
     runs-on: ubuntu-latest
@@ -36,9 +36,9 @@ jobs:
       - name: Deploy to firebase hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-        repoToken: "${{ secrets.GITHUB_TOKEN }}"
-        firebaseServiceAccount: >-
-          ${{ secrets.FIREBASE_SERVICE_ACCOUNT_QUALITY_DASHBOARD_PRODUC_3FB3F
-          }}
-        channelId: live
-        projectId: quality-dashboard-produc-3fb3f
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: >-
+            ${{ secrets.FIREBASE_SERVICE_ACCOUNT_QUALITY_DASHBOARD_PRODUC_69B3C
+            }}
+          channelId: live
+          projectId: quality-dashboard-produc-3fb3f

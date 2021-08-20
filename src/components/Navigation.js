@@ -2,16 +2,15 @@ import React from "react";
 
 // Internal
 import MenuItem from "./MenuItem";
+import { useStyles } from "../styles";
+import routes from "../routes";
 
-// assests folder
-import Logo from "../logo.svg";
-import DashboardIcon from "./";
+// assests
+import Logo from "./../logo.svg";
 
 // @material-ui
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
-import { useStyles } from "../styles";
-//import { MenuItem } from "@material-ui/core";
 
 const Navigation = () => {
   const classes = useStyles();
@@ -29,13 +28,17 @@ const Navigation = () => {
             alt="quality logo"
           />
         </div>
-        <List>
-          <MenuItem
-            lable="Dashboard"
-            icon={DashboardIcon}
-            activeIcon={DashboardIconActive}
-            path="/"
-          />
+        <List className={classes.navigationList}>
+          {routes.map((route, index) => {
+            return (
+              <MenuItem
+                label={route.label}
+                icon={route.icon}
+                activeIcon={route.activeIcon}
+                path={route.path}
+              />
+            );
+          })}
         </List>
       </Drawer>
     </div>

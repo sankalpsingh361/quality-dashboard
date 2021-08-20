@@ -10,6 +10,23 @@ export const useStyles = makeStyles({
     alignItems: "center",
   },
   navigationDrawer: {
-     width: 240,
+    width: 240,
+  },
+  navigationList: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    flex: 1,
+  },
+  menuItemIcon: {
+    width: "100%",
+  },
+  menuItem: {
+     width: "80%",
+     borderRadius: 8,
+     marginBottom: 8,
+  },
+  menuItemActive: {
+    backgroundColor: "#EBEBEC",
   },
 });
